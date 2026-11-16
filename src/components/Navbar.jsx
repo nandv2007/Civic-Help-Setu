@@ -33,6 +33,7 @@ import {
   Scale,
   BarChart2,
   Building2,
+  Landmark,
 } from 'lucide-react';
 
 import { useAuth } from '../context/AuthContext';
@@ -921,6 +922,12 @@ if (normalizedTarget === '/water-quality') {
                 to: '/senior-citizen-tribunal',
                 label: 'Senior Citizen Tribunal',
                 icon: Scale
+              })}
+
+              {renderNavLink({
+                to: '/land-acquisition-workspace',
+                label: 'Land Acquisition & Fair Compensation',
+                icon: Landmark
               })}
               {renderNavLink({
                 to: '/track',
