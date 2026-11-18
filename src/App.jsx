@@ -69,6 +69,7 @@ import WardIssueHeatmapWorkspace from './pages/WardIssueHeatmapWorkspace';
 import ContinuityPlannerWorkspace from './pages/ContinuityPlannerWorkspace';
 import SeniorCitizenTribunalWorkspace from './pages/SeniorCitizenTribunalWorkspace';
 import OpenContractingWorkspace from './pages/OpenContractingWorkspace';
+import EvidenceManifestWorkspace from './pages/EvidenceManifestWorkspace';
 
 const Services = lazy(() => import('./pages/Services'));
 
@@ -178,6 +179,9 @@ function AppRoot() {
                       <Route path="/streetlights" element={<StreetlightOutageWorkspace />} />
                       <Route path="/streetlight-outages" element={<StreetlightOutageWorkspace />} />
                       <Route path="/services/streetlight-outages" element={<StreetlightOutageWorkspace />} />
+                      <Route path="/evidence-manifest" element={<EvidenceManifestWorkspace />} />
+                      <Route path="/evidence-integrity" element={<EvidenceManifestWorkspace />} />
+                      <Route path="/services/evidence-manifest" element={<EvidenceManifestWorkspace />} />
                       <Route path="/shared-checklist/:token" element={<SharedChecklistView />} />
                       <Route path="/shared-directory/:token" element={<SharedDirectoryView />} />
                       <Route path="/app-status/:token" element={<PublicApplicationStatusView />} />

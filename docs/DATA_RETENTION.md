@@ -50,6 +50,8 @@ Retention for all of these: until deleted by the person (no automatic expiry).
 | Key | Written by | What it holds | Category |
 |---|---|---|---|
 | `civicbridge_senior_tribunal_petitions` | `seniorCitizenTribunalStorage.js` | Saved senior citizen maintenance and Section 23 property revocation tribunal petitions | Drafts and in-progress work |
+| `civicbridge_evidence_manifest_v1` | `evidenceManifestStorage.js` | Evidence dossier manifest saved on this device: file names, sizes, formats, SHA-256 digests and the citizen's own descriptions. Never file contents. | Drafts and in-progress work |
+| `civicbridge_evidence_last_check_v1` | `evidenceManifestStorage.js` | Summary counts of the last evidence verification run (unchanged, changed, missing, added) and when it ran | Drafts and in-progress work |
 | `civicbridge_checklists` | `checklistStorage.js` | Which checklist items are ticked, per checklist or application id | Drafts and in-progress work |
 | `civicbridge_preparation_plans_v1` | `applicationPreparationPlanService.js` | Saved application preparation plan and customized checklist progress | Drafts and in-progress work |
 | `civic_journey_progress_<journeyId>` (one per journey) | `journeyDependencyEngine.js` | Completed tasks of a journey plan | Drafts and in-progress work |

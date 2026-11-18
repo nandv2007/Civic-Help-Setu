@@ -116,6 +116,10 @@ Clear navigation, readable content, consistent interaction patterns, and a user-
 
 A dedicated preparedness workspace for municipal authorities and disaster response teams. Model critical service dependencies, detect single points of failure (SPOF) and dependency cycles with graph analysis, run tabletop exercises with timed inject simulations, record tactical decisions, calculate recovery time objective (RTO) gaps, generate printable offline continuity runbooks, and track corrective action items to closure. See [architecture and operational documentation](docs/civic-incident-response-drill-planner.md).
 
+### 🧾 15. Local Evidence Dossier Integrity Verification
+
+Build a manifest of the evidence files in a complaint dossier — file name, size, format, SHA-256 digest, timestamp and your own description — export it, and later check the same files for changed, missing or duplicate evidence. Everything happens in your browser: files are never uploaded and their contents are never stored. See [the integrity model and limits](docs/local-evidence-dossier-integrity.md).
+
 ---
 
 ## 📊 Project at a Glance
@@ -155,6 +159,7 @@ The platform includes the following major application areas:
 | Open Source     | Explore community contributions           |
 | Privacy Policy  | Review privacy-related information        |
 | Admin           | Access authorized administrative features |
+| Evidence Manifest | Record evidence digests and verify a dossier locally |
 
 The availability of individual features depends on the application's current implementation and configuration.
 

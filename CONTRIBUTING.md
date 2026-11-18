@@ -35,6 +35,8 @@ npm test -- --run src/services/openContractingAnalyticsService.test.js # procure
 npm test -- --run src/services/openContractingService.test.js # open-contracting service & storage tests (#751)
 npm test -- --run tests/open-contracting-analytics.test.js    # open-contracting API validation & abuse tests (#751)
 npm test -- --run src/pages/OpenContractingWorkspace.test.jsx # procurement analytics workspace UI tests (#751)
+npm test -- --run src/services/evidenceManifestService.test.js # evidence manifest contract, hashing & comparison tests (#947)
+npm test -- --run src/pages/EvidenceManifestWorkspace.test.jsx # evidence manifest builder/verifier UI tests (#947)
 npm test -- --run src/services/provenanceService.test.js       # lineage DAG & cycle prevention tests (#777)
 npm test -- --run src/pages/LineageExplorerWorkspace.test.jsx  # provenance explorer UI tests (#777)
 npm test -- --run tests/knowledge-provenance.test.js          # provenance serverless API tests (#777)
