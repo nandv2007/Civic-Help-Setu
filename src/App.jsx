@@ -70,6 +70,7 @@ import ContinuityPlannerWorkspace from './pages/ContinuityPlannerWorkspace';
 import SeniorCitizenTribunalWorkspace from './pages/SeniorCitizenTribunalWorkspace';
 import OpenContractingWorkspace from './pages/OpenContractingWorkspace';
 import EvidenceManifestWorkspace from './pages/EvidenceManifestWorkspace';
+import AccessibilityAuditWorkspace from './pages/AccessibilityAuditWorkspace';
 
 const Services = lazy(() => import('./pages/Services'));
 
@@ -179,6 +180,9 @@ function AppRoot() {
                       <Route path="/streetlights" element={<StreetlightOutageWorkspace />} />
                       <Route path="/streetlight-outages" element={<StreetlightOutageWorkspace />} />
                       <Route path="/services/streetlight-outages" element={<StreetlightOutageWorkspace />} />
+                      <Route path="/accessibility-audit" element={<AccessibilityAuditWorkspace />} />
+                      <Route path="/accessibility-audits" element={<AccessibilityAuditWorkspace />} />
+                      <Route path="/services/accessibility-audit" element={<AccessibilityAuditWorkspace />} />
                       <Route path="/evidence-manifest" element={<EvidenceManifestWorkspace />} />
                       <Route path="/evidence-integrity" element={<EvidenceManifestWorkspace />} />
                       <Route path="/services/evidence-manifest" element={<EvidenceManifestWorkspace />} />

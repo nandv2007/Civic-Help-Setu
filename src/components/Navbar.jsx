@@ -34,6 +34,7 @@ import {
   BarChart2,
   Building2,
   FileCheck2,
+  Accessibility,
 } from 'lucide-react';
 
 import { useAuth } from '../context/AuthContext';
@@ -157,6 +158,14 @@ if (normalizedTarget === '/water-quality') {
           normalizedPath === '/water-quality-register' ||
           normalizedPath === '/services/water-quality-register' ||
           normalizedPath.startsWith('/water-quality/')
+        );
+      }
+
+      if (normalizedTarget === '/accessibility-audit') {
+        return (
+          normalizedPath === '/accessibility-audit' ||
+          normalizedPath === '/accessibility-audits' ||
+          normalizedPath === '/services/accessibility-audit'
         );
       }
 
@@ -973,6 +982,13 @@ if (normalizedTarget === '/water-quality') {
                 activeTarget: '/tree-health',
                 label: t('nav.treeHealth', 'Tree Health Inventory'),
                 icon: Trees
+              })}
+
+              {renderNavLink({
+                to: '/accessibility-audit',
+                activeTarget: '/accessibility-audit',
+                label: t('nav.accessibilityAudit', 'Accessibility Audits'),
+                icon: Accessibility
               })}
 
               {renderNavLink({

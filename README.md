@@ -120,6 +120,10 @@ A dedicated preparedness workspace for municipal authorities and disaster respon
 
 Build a manifest of the evidence files in a complaint dossier — file name, size, format, SHA-256 digest, timestamp and your own description — export it, and later check the same files for changed, missing or duplicate evidence. Everything happens in your browser: files are never uploaded and their contents are never stored. See [the integrity model and limits](docs/local-evidence-dossier-integrity.md).
 
+### ♿ 16. Measured Accessibility Audits & Remediation Tracking
+
+Record what was actually measured — ramp gradient, door and corridor widths, washroom dimensions, grab bar heights, counter and lift clearances — instead of ticking a box. Each measurement is validated, converted to a common unit and compared with a published benchmark that shows its source, clause and caveats; results stay distinct as pass, at the limit, below the benchmark, not measured or not applicable. Findings become a remediation plan with owners, target dates and follow-up assessments, and each reassessment is compared with the one before it. It presents a preliminary screening, not a certified audit. See [the benchmarks, units and limits](docs/measured-accessibility-audits.md).
+
 ---
 
 ## 📊 Project at a Glance
@@ -160,6 +164,7 @@ The platform includes the following major application areas:
 | Privacy Policy  | Review privacy-related information        |
 | Admin           | Access authorized administrative features |
 | Evidence Manifest | Record evidence digests and verify a dossier locally |
+| Accessibility Audits | Measure barriers, plan remediation and track reassessments |
 
 The availability of individual features depends on the application's current implementation and configuration.
 
