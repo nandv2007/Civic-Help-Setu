@@ -74,8 +74,16 @@ export async function createManifestEntry(file, { description = '', now = () => 
 
   const digest = await computeSha256Hex(file);
 
+  // The id is also the React key, so it has to stay unique when the same bytes
+  // arrive under two different names: include a short slug of the name.
+  const nameSlug = String(file.name)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 40);
+
   return {
-    id: `entry-${digest.slice(0, 12)}-${String(file.size)}`,
+    id: `entry-${digest.slice(0, 12)}-${String(file.size)}-${nameSlug || 'file'}`,
     fileName: String(file.name),
     sizeBytes: Number(file.size),
     mimeType: (file.type || '').split(';')[0].trim().toLowerCase(),
@@ -196,6 +204,24 @@ export function buildManifest({ title, entries = [], createdAt } = {}) {
       })
     ),
   };
+}
+
+/**
+ * Re-exporting an unchanged dossier should keep its original creation time;
+ * anything else (added, removed, re-hashed files) starts a new stamp.
+ *
+ * @returns {string|undefined} a timestamp to reuse, or undefined for "now"
+ */
+export function resolveManifestCreatedAt(entries = [], previousManifest = null) {
+  const previousFiles = previousManifest?.files;
+  if (!previousManifest?.createdAt || !Array.isArray(previousFiles)) return undefined;
+  if (previousFiles.length !== entries.length) return undefined;
+
+  const sameFiles = entries.every(
+    (entry, index) => previousFiles[index]?.id === entry.id && previousFiles[index]?.digest === entry.digest
+  );
+
+  return sameFiles ? previousManifest.createdAt : undefined;
 }
 
 /** Pretty-printed manifest JSON, ready to download. */

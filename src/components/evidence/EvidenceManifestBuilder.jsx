@@ -18,6 +18,7 @@ import {
   MAX_FILE_SIZE_BYTES,
   MAX_MANIFEST_TITLE_LENGTH,
   formatBytes,
+  sanitizeDescription,
 } from '../../data/evidenceManifestContract.js';
 import { EvidenceEmptyState, EvidenceProgress } from './EvidenceStates.jsx';
 import { formatDateTime } from './evidenceFormat.js';
@@ -204,8 +205,8 @@ export default function EvidenceManifestBuilder({
                 </tr>
               </thead>
               <tbody>
-                {entries.map((entry) => (
-                  <tr key={entry.id}>
+                {entries.map((entry, index) => (
+                  <tr key={`${entry.id}-${index}`}>
                     <td>
                       <strong>{entry.fileName}</strong>
                       <br />
@@ -232,7 +233,7 @@ export default function EvidenceManifestBuilder({
                         onChange={(event) => onDescriptionChange?.(entry.id, event.target.value)}
                       />
                       <span className="ev-field__hint">
-                        {entry.description.length}/{MAX_DESCRIPTION_LENGTH}
+                        {sanitizeDescription(entry.description).length}/{MAX_DESCRIPTION_LENGTH}
                       </span>
                     </td>
                     <td>

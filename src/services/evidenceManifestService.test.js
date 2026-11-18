@@ -12,6 +12,7 @@ import {
   findDuplicateEntries,
   verificationToCsv,
   verifyManifestAgainstFiles,
+  resolveManifestCreatedAt,
 } from './evidenceManifestService.js';
 import {
   loadSavedManifest,
@@ -161,6 +162,15 @@ describe('createManifestEntry / createManifestEntries (#947)', () => {
     expect(JSON.stringify(entry)).not.toContain('hello evidence');
   });
 
+  it('gives identical bytes under different names distinct ids (React keys)', async () => {
+    const first = await createManifestEntry(makeFile('statement.pdf', 'same bytes'));
+    const second = await createManifestEntry(makeFile('statement-copy.pdf', 'same bytes'));
+
+    expect(first.digest).toBe(second.digest);
+    expect(first.id).not.toBe(second.id);
+    expect(first.id).toContain('statement-pdf');
+  });
+
   it('refuses a file that breaks the limits', async () => {
     await expect(createManifestEntry(fakeFile('virus.exe', 10, 'application/x-msdownload'))).rejects.toThrow(
       /Unsupported format/
@@ -254,6 +264,33 @@ describe('buildManifest and export (#947)', () => {
       createdAt: '2026-11-18T10:00:00.000Z',
     });
     expect(name).toBe('evidence-manifest-streetlight-ward-42-photos-2026-11-18.json');
+  });
+});
+
+describe('resolveManifestCreatedAt (#947)', () => {
+  const previous = buildManifest({
+    title: 'Old name',
+    entries: [makeEntry({ id: 'a', fileName: 'one.pdf' }), makeEntry({ id: 'b', fileName: 'two.pdf', digest: DIGEST_B })],
+    createdAt: '2026-11-01T09:00:00.000Z',
+  });
+
+  it('keeps the original stamp when only the title changes', () => {
+    expect(resolveManifestCreatedAt(previous.files, previous)).toBe('2026-11-01T09:00:00.000Z');
+  });
+
+  it('starts a new stamp when files are added, removed or re-hashed', () => {
+    expect(resolveManifestCreatedAt(previous.files.slice(0, 1), previous)).toBeUndefined();
+    expect(
+      resolveManifestCreatedAt([...previous.files, makeEntry({ id: 'c', fileName: 'three.pdf' })], previous)
+    ).toBeUndefined();
+    expect(
+      resolveManifestCreatedAt([{ ...previous.files[0], digest: 'f'.repeat(64) }, previous.files[1]], previous)
+    ).toBeUndefined();
+  });
+
+  it('falls back to now when there is no earlier manifest', () => {
+    expect(resolveManifestCreatedAt([makeEntry()], null)).toBeUndefined();
+    expect(resolveManifestCreatedAt([makeEntry()], { files: [] })).toBeUndefined();
   });
 });
 

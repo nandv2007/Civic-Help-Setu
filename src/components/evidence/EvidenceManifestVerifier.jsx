@@ -315,9 +315,7 @@ export default function EvidenceManifestVerifier({
                       <td>
                         <span
                           className={`ev-digest ${
-                            result.actualDigest && result.actualDigest !== result.expectedDigest
-                              ? 'ev-digest--mismatch'
-                              : ''
+                            result.status === VERIFICATION_STATUS.CHANGED ? 'ev-digest--mismatch' : ''
                           }`}
                         >
                           {result.actualDigest || 'not found'}

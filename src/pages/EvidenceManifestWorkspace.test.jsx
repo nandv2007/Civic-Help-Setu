@@ -329,6 +329,28 @@ describe('EvidenceManifestVerifier (#947)', () => {
     expect(html).toContain('does not prove the documents themselves are authentic');
   });
 
+  it('does not flag a file that is only listed in the manifest as a digest mismatch', () => {
+    const results = compareManifestToFiles([manifest.files[0]], [
+      { fileName: 'bonus.jpg', digest: '9'.repeat(64), sizeBytes: 10, mimeType: 'image/jpeg' },
+    ]);
+
+    const html = renderToStaticMarkup(
+      <EvidenceManifestVerifier
+        manifest={manifest}
+        results={results}
+        summary={summarizeVerification(results)}
+        onImportManifestClick={() => {}}
+        onClearManifest={() => {}}
+        onVerifyFiles={() => {}}
+        onExportResults={() => {}}
+        onDownloadManifest={() => {}}
+      />
+    );
+
+    // Missing + not-in-manifest rows have no "expected vs found" conflict, so no red digest.
+    expect(html).not.toContain('ev-digest--mismatch');
+  });
+
   it('surfaces hashing failures and duplicate warnings during verification', () => {
     const html = renderToStaticMarkup(
       <EvidenceManifestVerifier

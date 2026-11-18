@@ -34,6 +34,7 @@ import {
   findDuplicateEntries,
   manifestFileName,
   parseManifest,
+  resolveManifestCreatedAt,
   serializeManifest,
   verificationToCsv,
   verifyManifestAgainstFiles,
@@ -75,11 +76,14 @@ export default function EvidenceManifestWorkspace() {
 
   const [tab, setTab] = useState('build');
 
-  // Manifest state, hydrated from local storage so a check is possible later.
-  const [manifest, setManifest] = useState(() => loadSavedManifest());
-  const [manifestSource, setManifestSource] = useState(() => (loadSavedManifest() ? 'saved on this device' : null));
-  const [title, setTitle] = useState(() => loadSavedManifest()?.title || DEFAULT_MANIFEST_TITLE);
-  const [entries, setEntries] = useState(() => loadSavedManifest()?.files || []);
+  // Manifest state, hydrated once from local storage so a check is possible later.
+  // Read it in a single lazy initialiser: three separate reads could disagree if
+  // another tab edited storage between them.
+  const [savedOnMount] = useState(() => loadSavedManifest());
+  const [manifest, setManifest] = useState(savedOnMount);
+  const [manifestSource, setManifestSource] = useState(savedOnMount ? 'saved on this device' : null);
+  const [title, setTitle] = useState(savedOnMount?.title || DEFAULT_MANIFEST_TITLE);
+  const [entries, setEntries] = useState(savedOnMount?.files || []);
 
   // Builder state
   const [hashing, setHashing] = useState(false);
@@ -233,7 +237,8 @@ export default function EvidenceManifestWorkspace() {
     return buildManifest({
       title,
       entries,
-      createdAt: manifest?.createdAt && manifest.files?.length === entries.length ? manifest.createdAt : undefined,
+      // Renaming a dossier must not silently move its "created" stamp to now.
+      createdAt: resolveManifestCreatedAt(entries, manifest),
     });
   }, [entries, manifest, title]);
 

@@ -80,6 +80,10 @@ Limits are enforced in `validateEvidenceFile()` and in `parseManifest()`, so bot
 
 Matching is by file name; a renamed file therefore shows up as `missing` **and** `extra` rather than being guessed at. That asymmetry is deliberate: the tool reports what it can actually see.
 
+The "created" stamp is stable: renaming a dossier, or re-exporting an unchanged one, keeps the original `createdAt`. Adding, removing or re-hashing a file starts a new stamp (`resolveManifestCreatedAt()`).
+
+Entry ids include a short slug of the file name, so the same bytes under two different names still get distinct ids (they are React keys as well as records) — the duplicate warning links the pair instead of the table collapsing two rows into one.
+
 `findDuplicateEntries()` separately flags byte-identical files (same digest under different names) and repeated file names, both while building and while verifying.
 
 ## Accessibility and failure handling
@@ -87,6 +91,8 @@ Matching is by file name; a renamed file therefore shows up as `missing` **and**
 - Both long-running steps (hashing on add, hashing on verify) show progress with `role="progressbar"`, `aria-valuenow` / `aria-valuetext`, and a polite live region naming the file being processed.
 - Errors use `role="alert"`; per-file rejections are listed individually with the reason and are dismissible.
 - Verification completes even if some files fail, and those files are reported separately — they are never silently counted as unchanged.
+- The red "mismatch" digest colour is reserved for `changed` rows; a file that is merely absent or unlisted is never painted as a conflict.
+- The description counter measures the stored (sanitised) value, so the number matches what the exported manifest contains.
 - Status is shown with an icon and a word ("Unchanged", "Changed", "Missing", "Not in manifest"), not colour alone.
 - The tabs use `role="tablist"` / `role="tabpanel"` with `aria-selected` and `aria-controls`.
 - When Web Crypto (`crypto.subtle`) is unavailable the service throws a clear error instead of falling back to a weaker hash, and the page shows an error state.
