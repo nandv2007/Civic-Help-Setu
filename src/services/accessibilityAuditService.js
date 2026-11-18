@@ -319,7 +319,8 @@ const statusLabel = {
 
 /**
  * Printable report. Returned as escaped HTML so it can be opened in a print
- * window; every user-supplied value goes through escapeHtml.
+ * window (the caller hands it to the browser as a blob:, not through
+ * document.write); every user-supplied value goes through escapeHtml.
  */
 export function buildPrintableReport(assessment) {
   if (!assessment) return '';
