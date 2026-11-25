@@ -20,11 +20,6 @@ import RouteErrorFallback from './components/common/RouteErrorFallback';
 import RouteErrorBoundary from './components/common/RouteErrorBoundary';
 import { ServiceCardSkeletonGrid } from './components/ServiceCardSkeleton';
 
-import DataCleanRoomWorkspace from './pages/DataCleanRoomWorkspace';
-
-
-import ShelterStatusBoard from './pages/ShelterStatusBoard';
-
 const ResourceExchangePage = lazy(() => import('./components/resource-exchange/ResourceExchangePage'));
 const Home = lazy(() => import('./pages/Home'));
 const Login = lazy(() => import('./pages/Login'));
@@ -111,11 +106,11 @@ const StreetVendorWorkspace = lazy(() => import('./pages/StreetVendorWorkspace')
 const DarkPatternsWorkspace = lazy(() => import('./pages/DarkPatternsWorkspace'));
 const AccessibilityAuditWorkspace = lazy(() => import('./pages/AccessibilityAuditWorkspace'));
 const AccessibilityComplaintTrackerWorkspace = lazy(() => import('./pages/AccessibilityComplaintTrackerWorkspace'));
+const TenancyDisputeWorkspace = lazy(() => import('./pages/TenancyDisputeWorkspace'));
 const LegalSourceReviewWorkspace = lazy(() => import('./pages/LegalSourceReviewWorkspace'));
 const RteAdmissionWorkspace = lazy(() => import('./pages/RteAdmissionWorkspace'));
 const EvidenceDossierWorkspace = lazy(() => import('./pages/EvidenceDossierWorkspace'));
 const ChangeFeedPage = lazy(() => import('./pages/ChangeFeedPage'));
-const FeeEvidenceAssistant = lazy(() => import('./pages/FeeEvidenceAssistant'));
 const JurisdictionHandoffWorkspace = lazy(() => import('./pages/JurisdictionHandoffWorkspace'));
 const AgentSandboxWorkspace = lazy(() => import('./pages/AgentSandboxWorkspace'));
 const KnowledgeGraphQueryWorkspace = lazy(() => import('./pages/KnowledgeGraphQueryWorkspace'));
@@ -338,6 +333,9 @@ function AppRoot() {
                             <Route path="/accessibility-complaint-tracker" element={<AccessibilityComplaintTrackerWorkspace />} />
                             <Route path="/accessibility-escalation" element={<AccessibilityComplaintTrackerWorkspace />} />
                             <Route path="/services/accessibility-tracker" element={<AccessibilityComplaintTrackerWorkspace />} />
+                            <Route path="/tenancy-dispute-workspace" element={<TenancyDisputeWorkspace />} />
+                            <Route path="/tenancy-deposit-redressal" element={<TenancyDisputeWorkspace />} />
+                            <Route path="/tenant-rights-audit" element={<TenancyDisputeWorkspace />} />
                             <Route path="/dark-patterns-workspace" element={<DarkPatternsWorkspace />} />
                             <Route path="/drip-pricing-audit" element={<DarkPatternsWorkspace />} />
                             <Route path="/ccpa-redressal" element={<DarkPatternsWorkspace />} />

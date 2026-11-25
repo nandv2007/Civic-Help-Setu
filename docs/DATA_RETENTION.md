@@ -64,6 +64,8 @@ Retention for all of these: until deleted by the person (no automatic expiry).
 | `civicbridge_rte_grievance_vault` | `rteAdmissionStorage.js` | Saved RTE Section 12(1)(c) quota eligibility, screening violation audits, capitation penalties, and Section 32 petitions with SHA-256 seals | Drafts and in-progress work |
 | `civicbridge_accessibility_cases_v1` | `accessibilityEscalationStorage.js` | Saved accessibility complaint timelines, evidence logs, follow-up milestones, and escalation drafts under RPwD Act 2016 | Drafts and in-progress work |
 | `civicbridge_accessibility_tracker_settings_v1` | `accessibilityEscalationStorage.js` | Local user settings and preferences for accessibility follow-up reminders | Drafts and in-progress work |
+| `civicbridge_tenancy_cases_v1` | `tenancyDisputeStorage.js` | Saved tenancy security deposit deduction audits, essential service disruption records, and Rent Authority drafts under Model Tenancy Act 2021 | Drafts and in-progress work |
+| `civicbridge_tenancy_settings_v1` | `tenancyDisputeStorage.js` | Local user preferences and jurisdiction defaults for tenancy dispute audits | Drafts and in-progress work |
 | `civicbridge_legal_sources_v1` | `legalSourceStorage.js` | Versioned statutory source citations, provisions, and SemVer lifecycle states | Drafts and in-progress work |
 | `civicbridge_legal_draft_snapshots_v1` | `legalSourceStorage.js` | Immutable historical citation snapshots sealed in citizen drafting templates | Drafts and in-progress work |
 | `civicbridge_legal_sources_audit_v1` | `legalSourceStorage.js` | Append-only audit trail for statutory reviews, publications, and rollbacks | Drafts and in-progress work |

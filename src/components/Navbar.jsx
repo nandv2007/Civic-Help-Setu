@@ -1184,6 +1184,7 @@ const Navbar = ({ initialOpen = false, defaultOpen } = {}) => {
               })}
               {renderNavLink({ to: '/accessibility-audit-workspace', label: 'Universal Accessibility Audit', icon: Scale })}
               {renderNavLink({ to: '/accessibility-tracker', label: 'Accessibility Complaint Tracker', icon: Scale })}
+              {renderNavLink({ to: '/tenancy-dispute-workspace', label: 'Tenancy Rights & Deposit Redressal', icon: Scale })}
               {renderNavLink({ to: '/dark-patterns-workspace', label: 'Dark Patterns & Consumer Redressal', icon: Scale })}
               {renderNavLink({
                 to: '/street-vendor-workspace',
